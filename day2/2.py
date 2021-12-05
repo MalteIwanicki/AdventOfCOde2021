@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv("2/input.csv", " ", names=["order", "value"])
+df = pd.read_csv("day2/input.csv", " ", names=["order", "value"])
 
 x = 0
 y = 0

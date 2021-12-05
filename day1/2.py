@@ -1,5 +1,5 @@
 counter = 0
-lines = open("1/input.txt", "r").readlines()
+lines = open("day1/input.txt", "r").readlines()
 
 depths = [int(line) for line in lines]
 queue = depths[:3]

@@ -29,3 +29,12 @@ def test_get_horizontal_and_fuel2(crabs):
     expected_fuel = 168
     assert horizontal == expected_horizontal
     assert fuel == expected_fuel
+
+
+def test_part1():
+    assert main.part1() == 348996
+
+
+def test_part2():
+    assert main.part2() == 98231647
+

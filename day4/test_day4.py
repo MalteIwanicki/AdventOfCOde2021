@@ -1,22 +1,16 @@
-from main import (
-    part1,
-    part2,
-    read_input_numbers_and_bingo_tables,
-    sum_of_unmarked_numbers,
-    final_score,
-    call_number,
-    get_winning_table,
-)
+from pytest import fixture
+import pathlib
+import main
 
-TEST_FILE = "day4/test_file.txt"
+TEST_FILE = pathlib.Path(__file__).parent / "test_input.txt"
 
 
 def test_part1():
-    assert part1(TEST_FILE) == 4512
+    assert main.part1(TEST_FILE) == 4512
 
 
 def test_part2():
-    assert part2(TEST_FILE) == 1924
+    assert main.part2(TEST_FILE) == 1924
 
 
 def test_read_input_numbers():
@@ -49,7 +43,7 @@ def test_read_input_numbers():
         "26",
         "1",
     ]
-    numbers, _ = read_input_numbers_and_bingo_tables(TEST_FILE)
+    numbers, _ = main.read_input_numbers_and_bingo_tables(TEST_FILE)
     assert numbers == expected_numbers
 
 
@@ -77,7 +71,7 @@ def test_read_bingo_tables():
             ["2", "0", "12", "3", "7"],
         ],
     ]
-    _, tables = read_input_numbers_and_bingo_tables(TEST_FILE)
+    _, tables = main.read_input_numbers_and_bingo_tables(TEST_FILE)
     assert tables == expected_tables
 
 
@@ -89,18 +83,18 @@ def test_sum_of_unmarked_numbers():
         ["22", "-11", "13", "6", "-5"],
         ["-2", "-0", "12", "3", "-7"],
     ]
-    sum = sum_of_unmarked_numbers(table)
+    sum = main.sum_of_unmarked_numbers(table)
     expected = 188
     assert sum == expected
 
 
 def test_final_score():
-    assert final_score(188, 24) == 4512
+    assert main.final_score(188, 24) == 4512
 
 
 def test_call_numbers():
-    _, tables = read_input_numbers_and_bingo_tables(TEST_FILE)
-    call_number("7", tables)
+    _, tables = main.read_input_numbers_and_bingo_tables(TEST_FILE)
+    main.call_number("7", tables)
     expected_result = [
         [
             ["22", "13", "17", "11", "0"],
@@ -128,12 +122,12 @@ def test_call_numbers():
 
 
 def test_get_winner_table():
-    _, tables = read_input_numbers_and_bingo_tables(TEST_FILE)
+    _, tables = main.read_input_numbers_and_bingo_tables(TEST_FILE)
     nums = ["7", "4", "9", "5", "11", "17", "23", "2", "0", "14", "21"]
     for num in nums:
-        call_number(num, tables)
-    assert not get_winning_table(tables)
-    call_number("24", tables)
+        main.call_number(num, tables)
+    assert not main.get_winning_table(tables)
+    main.call_number("24", tables)
     expected_winner = [
         ["-14", "-21", "-17", "-24", "-4"],
         ["10", "16", "15", "-9", "19"],
@@ -141,5 +135,5 @@ def test_get_winner_table():
         ["22", "-11", "13", "6", "-5"],
         ["-2", "-0", "12", "3", "-7"],
     ]
-    assert get_winning_table(tables) == expected_winner
+    assert main.get_winning_table(tables) == expected_winner
 
